@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torchinfo import summary
 
 class Block(nn.Module):
     def __init__(self, in_channels, out_channels, stride):
@@ -45,8 +46,10 @@ def test():
     x = torch.randn((5, 3, 256, 256))
     model = Discriminator(in_channels=3)
     preds = model(x)
+    s=summary(model, input_size=(1, 3, 256, 256))
     print(model)
     print(preds.shape)
+    print(s)
 
 if __name__ == "__main__":
     test()
